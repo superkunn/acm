@@ -18,6 +18,13 @@ typedef long long ll;
 typedef vector<int> vi;
 typedef pair<int,int> pii;
 /************long long****************/
+inline ll read()
+{
+    int x=0,f=1;char ch=getchar();
+    while(ch<'0'||ch>'9'){if(ch=='-')f=-1;ch=getchar();}
+    while(ch>='0'&&ch<='9'){x=x*10+ch-'0';ch=getchar();}
+    return x*f;
+}
 const int MAXN=1e5+50;
 struct DSU{
     int p[MAXN],w[MAXN];
@@ -36,30 +43,29 @@ struct DSU{
     bool same(int x,int y){return findp(x)==findp(y);}
 }dsu;
 void solve(){
-    int n;
-    scanf("%d",&n);
+    int n=read();
     while(n--){
-        int x,y;
-        scanf("%d%d",&x,&y);
+        int x=read();
+        int y=read();
         dsu.init(x);
         while(y--){
             char c;
-            int a,b;
-            getchar();
-            scanf("%c%d%d",&c,&a,&b);
+            scanf("%c",&c);
+            int a=read();
+            int b=read();
             if(c=='D'){
                 dsu.unite(a,b);
             }
             else{
                 if(!dsu.same(a,b)){
-                    printf("Not sure yet.\n");
+                    puts("Not sure yet.");
                 }
                 else{
                     if(dsu.w[a]==dsu.w[b]){
-                        printf("In the same gang.\n");
+                        puts("In the same gang.");
                     }
                     else{
-                        printf("In different gangs.\n");
+                        puts("In different gangs.");
                     }
                 }
             }
@@ -67,8 +73,8 @@ void solve(){
     }
 }
 int main(){
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+    //ios::sync_with_stdio(false);
+    //cin.tie(0);
     solve();
     return 0;
 }
