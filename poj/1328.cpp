@@ -1,4 +1,5 @@
 #include<iostream>
+#include<cstdio>
 #include<algorithm>
 #include<cmath>
 using namespace std;
@@ -10,24 +11,22 @@ bool cmp(const node &x,const node &y){
     return x.l<y.l;
 }
 int main(){
-    ios::sync_with_stdio(false);
-    cin.tie(0);
     int n;
     double d;
     int kase=0;
-    while(cin>>n>>d){
+    while(~scanf("%d%lf",&n,&d)){
         if(n==0&&d==0)break;
         int ans=n;
         for(int i=1;i<=n;i++){
             double x,y;
-            cin>>x>>y;
+            scanf("%lf%lf",&x,&y);
             if(y>d)ans=-1;
             double w=sqrt(d*d-y*y);
             no[i].l=x-w;
             no[i].r=x+w;
         }
         if(ans==-1){
-            cout<<"Case "<<++kase<<": "<<ans<<'\n';
+            printf("Case %d: %d\n",++kase,ans);
             continue;
         }
         sort(no+1,no+1+n,cmp);
@@ -46,7 +45,7 @@ int main(){
                 rr=no[i].r;
             }
         }
-        cout<<"Case "<<++kase<<": "<<ans<<'\n';
+        printf("Case %d: %d\n",++kase,ans);
     }
     return 0;
 }
