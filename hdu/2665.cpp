@@ -50,7 +50,6 @@ int work(){
         sort(all(v));v.erase(unique(all(v)),v.end());
         rep(i,1,n)update(1,n,root[i],root[i-1],getid(a[i]));
         rep(i,1,m)scanf("%d%d%d",&x,&y,&k),printf("%d\n",v[query(1,n,root[x-1],root[y],k)-1]);
-        rep(i,1,cnt)T[i].sum=0;
     }
     return 0;
 }
