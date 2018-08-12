@@ -1,55 +1,86 @@
-//poj 3041
-#include<cstdio>
-#include<vector>
-#include<cstring>
+#include <algorithm>
+#include  <iostream>
+#include   <cstring>
+#include    <string>
+#include    <cstdio>
+#include    <vector>
+#include    <cstdio>
+#include    <vector>
+#include     <stack>
+#include     <queue>
+#include     <cmath>
+#include       <set>
+#include       <map>
 using namespace std;
-const int MAXV=1e3+5;//!!!
+#define rep(i,a,b) for(int i=a;i<=b;i++)
+#define per(i,a,b) for(int i=a;i>=b;i--)
+#define clr(a,x) memset(a,x,sizeof(a))
+#define pb push_back
+#define mp make_pair
+#define all(x) (x).begin(),(x).end()
+#define fi first
+#define se second
+#define SZ(x) ((int)(x).size())
+typedef unsigned long long ull;
+typedef long long ll;
+typedef vector<int> vi;
+typedef pair<int,int> pii;
+/*************head******************/
+const int MAXV=1e3+5;
 struct BM{
     int V;
-    vector<int> G[MAXV];
+    vi G[MAXV];
     int match[MAXV];
-    bool used[MAXV];
+    bool vis[MAXV];
     void init(int x){
         V=x;
-        for(int i=0;i<=MAXV;i++){
-            G[i].clear();
-        }
+        rep(i,1,V)G[i].clear();
     }
     void add_edge(int u,int v){
-        G[u].push_back(v);G[v].push_back(u);
+        G[u].pb(v);
+        G[v].pb(u);
     }
-    bool dfs(int v){
-        used[v]=true;
-        for(int i=0;i<G[v].size();i++){
-            int u=G[v][i],w=match[u];
-            if(w<0||!used[w]&&dfs(w)){
-                match[v]=u;match[u]=v;
+    bool dfs(int u){
+        vis[u]=true;
+        for(int i=0;i<(int)G[u].size();i++){
+            int v=G[u][i];
+            int w=match[v];
+            if(w==-1||(!vis[w]&&dfs(w))){
+                match[u]=v;
+                match[v]=u;
                 return true;
             }
         }
         return false;
     }
     int matching(){
-        int res=0;
-        memset(match,-1,sizeof(match));
-        for(int i=1;i<=V;i++){
-            if(match[i]<0){
-                memset(used,0,sizeof(used));
-                if(dfs(i))res++;
+        int ret=0;
+        clr(match,-1);
+        rep(i,1,V){
+            if(match[i]==-1){
+                clr(vis,0);
+                if(dfs(i))ret++;
             }
         }
-        return res;
+        return ret;
     }
 }bm;
-int main(){
+int work(){
     int n,k;
     scanf("%d%d",&n,&k);
     bm.init(2*n);
     while(k--){
-        int x,y;
-        scanf("%d%d",&x,&y);
-        bm.add_edge(x,y+n);
+        int u,v;
+        scanf("%d%d",&u,&v);
+        bm.add_edge(u,n+v);
     }
-    printf("%d\n",bm.matching());
+    printf("%d",bm.matching());
+    return 0;
+}
+int main(){
+#ifdef superkunn
+    freopen("input.txt","rt",stdin);
+#endif
+    work();
     return 0;
 }
