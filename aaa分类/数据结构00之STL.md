@@ -6,4 +6,4 @@
 ## Easy Problem from Rujia Liu? UVA - 11991
 >题意：给出一个序列，每次查询第k个v的下标。
 
->思路：用map<int,vector<int> >搞一下。
+>思路：用map<int,vi >搞一下。
