@@ -1,5 +1,5 @@
 
- import java.io.*;
+import java.io.*;
 public class Main{
     static int a[] = new int[45];
     static StreamTokenizer in =  new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
