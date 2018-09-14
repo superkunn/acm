@@ -14,16 +14,6 @@ public class Main{
         solver.solve(in, out);
         out.close();
     }
-    static class P{
-        int l,r;
-        P(){};
-    }
-    static class cmp1 implements Comparator<P>{
-        public int compare(P a,P b){
-            if(a.l==b.l)return b.r-a.r;
-            return a.l-b.l;
-        }
-    }
     static class Edge{
         int v,nxt;
         Edge(){}
