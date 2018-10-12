@@ -19,3 +19,5 @@
 >思路：第一遍dfs记录当前状态，由每个是输入决定。第二遍深搜记录当前值改变能否影响输出。
 
 ## cf 500 D New Year Santa Network 化式子dfs好题
+
+## cf 1065 F. Up and Down the Tree 好题，想象力
