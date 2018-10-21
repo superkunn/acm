@@ -22,3 +22,5 @@
 >多种状态的bfs，一个圆盘在二维图上滚的题。
 
 ## cf 1064 D. Labyrinth 好题
+
+## cf 1070 A. Find a Number 好题
