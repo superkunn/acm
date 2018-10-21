@@ -24,3 +24,5 @@
 ## cf 1064 D. Labyrinth 好题
 
 ## cf 1070 A. Find a Number 好题
+
+## cf 1072 D. Minimum path 好题
