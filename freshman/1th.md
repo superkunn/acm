@@ -317,7 +317,70 @@ int main(){
 ```
 
 ## F.Heap Partition(changzhiming)
+```c++
+#include<bits/stdc++.h>
+#define maxn 200005
+#define pa make_pair
+using namespace std;
+int t,n;
+int a[maxn];
+set<pair<int,int>>st;
+map<pair<int,int>,int>mp;
+vector<int>ans[maxn];
+int main()
+{
+    scanf("%d",&t);
+    while(t--){
+        scanf("%d",&n);
+        st.clear();
+        mp.clear();
+        for(int i=1;i<=n;i++){
+            scanf("%d",&a[i]);
+            ans[i].clear();
+            ans[i].clear();
+        }
+        int rootcnt=1,now;
+        st.insert(pa(a[1],1));
+        mp[pa(a[1],1)]=2;
+        ans[1].push_back(1);
+        bool f=false;
+        for(int i=2;i<=n;i++){
+            set<pair<int,int>>::iterator it=st.lower_bound(pa(a[i],1000));
+            if(it==st.begin())
+                f=true;
+            else
+                f=false;
+            if(!f){
+                it--;
+                mp[pa(a[i],it->second)]+=2;
+                st.insert(pa(a[i],it->second));
+                ans[it->second].push_back(i);
+                mp[pa(it->first,it->second)]--;
+                if(mp[pa(it->first,it->second)]==0){
+                    st.erase(pa(it->first,it->second));
+                }
+            }
+            if(f){
+                rootcnt++;
+                st.insert(pa(a[i],rootcnt));
+                mp[pa(a[i],rootcnt)]=2;
+                ans[rootcnt].push_back(i);
+            }
+        }
+        printf("%d\n",rootcnt);
+        for(int i=1;i<=rootcnt;i++){
+            printf("%d ",ans[i].size());
+            for(int j=0;j<ans[i].size();j++){
+                 printf("%d",ans[i][j]);
+                 if(j!=ans[i].size()-1)printf(" ");
+                 else printf("\n");
+            }
+        }
+    }
+    return 0;
+}
 
+```
 
 # 补题
 ## G
