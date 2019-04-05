@@ -382,7 +382,7 @@ int main()
 ```
 
 # 补题
-## G.Yet Another Game of Stones
+## G.Yet Another Game of Stones(hanxukun)
 ```c++
 #include<bits/stdc++.h>
 using namespace std;
