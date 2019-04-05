@@ -382,8 +382,72 @@ int main()
 ```
 
 # 补题
-## G
+## G.Yet Another Game of Stones
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+#define rep(i,a,b) for(int i=a;i<=b;i++)
+const int MAXN=1e5+10;
+int a[MAXN],b[MAXN];
+bool odd(int x){
+    return x&1;
+}
+string fun(int n){
+    int cnt1=0,cnt2=0;
+    rep(i,1,n){
+        if(b[i]==2&&odd(a[i])){
+            return "Bob";
+        }else if(b[i]==2){
+            cnt1++;
+        }else if(b[i]==1&&a[i]>1){
+            cnt2++;
+        }
+    }
+    if(cnt1+cnt2>1)return "Bob";
+    if(cnt1+cnt2==0){
+        int now=0;
+        rep(i,1,n){
+            now^=a[i];
+        }
+        if(now==0)return "Bob";
+        else return "Alice";
+    }
+    int now=0;
+    rep(i,1,n){
+        if(b[i]==1&&a[i]>1){
+            if(!odd(a[i]))now^=1;
+            continue;
+        }else if(b[i]==2){
+            continue;
+        }
+        now^=a[i];
+    }
+    if(now==0)return "Alice";
+    else return "Bob";
+}
+int main(){
+    int T;
+    scanf("%d",&T);
+    while(T--){
+        int n;
+        scanf("%d",&n);
+        rep(i,1,n){
+            scanf("%d",&a[i]);
+        }
+        rep(i,1,n){
+            scanf("%d",&b[i]);
+        }
+        string ans=fun(n);
+        for(auto x:ans){
+            putchar(x);
+        }
+        puts("");
+    }
+    return 0;
+}
 
+
+```
 ## H
 
 ## I
