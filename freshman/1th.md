@@ -337,7 +337,6 @@ int main()
         for(int i=1;i<=n;i++){
             scanf("%d",&a[i]);
             ans[i].clear();
-            ans[i].clear();
         }
         int rootcnt=1,now;
         st.insert(pa(a[1],1));
