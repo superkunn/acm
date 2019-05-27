@@ -1,0 +1,114 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define rep(i,a,b) for(int i=a;i<=b;i++)
+#define per(i,a,b) for(int i=a;i>=b;i--)
+#define clr(a,x) memset(a,x,sizeof(a))
+#define SZ(x) ((int)(x).size())
+#define lson rt<<1
+#define rson rt<<1|1
+#define pb push_back
+#define fi first
+#define se second
+#define what_is(x) cerr<<#x<<" "<<x<<endl;
+typedef long long ll;
+typedef long double ld;
+typedef pair<int,int> pii;
+typedef vector<int> vi;
+template <typename T>
+inline void _read(T& x){
+    cin>>x;
+}
+void R(){}
+template <typename T,typename... U>
+void R(T&head,U&... tail){
+    _read(head);
+    R(tail...);
+}
+
+template <typename T>
+inline void _write(const T& x){
+    cout<<x<<' ';
+}
+void W(){cout<<endl;}
+template <typename T,typename... U>
+void W(const T&head,const U&... tail){
+    _write(head);
+    W(tail...);
+}
+
+void go();
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    //cout<<fixed<<setprecision(15);
+    go();
+    return 0;
+}
+/****************ackun*********************/
+namespace G1{// init(n);add_edge(u,v);gao();
+    const int MAXV=1e3+10;
+    const int MAXE=1e3+10;
+    int tot;
+    int head[MAXV];
+    struct Edge{
+        int v,nxt;
+    }edge[MAXE<<1];
+    int n;
+    void init(int _n){//一共n个点
+        n=_n;
+        tot=0;
+        clr(head,-1);
+    }
+    void add_edge(int u,int v){
+        edge[tot]=Edge{v,head[u]};
+        head[u]=tot++;
+    }
+    int match[MAXV];
+    bool used[MAXV];
+    bool dfs(int u){
+        used[u]=true;
+        for(int i=head[u];~i;i=edge[i].nxt){
+            int v=edge[i].v;
+            int w=match[v];
+            if(w<0||!used[w]&&dfs(w)){
+                match[u]=v;
+                match[v]=u;
+                return true;
+            }
+        }
+        return false;
+    }
+    int gao(){
+        int res=0;
+        clr(match,-1);
+        rep(i,1,n){
+            if(match[i]<0){
+                clr(used,0);
+                if(dfs(i)){
+                    res++;
+                }
+            }
+        }
+        return res;
+    }
+
+}
+void go(){
+    int k,m,n;
+    while(true){
+        R(k,m,n);
+        if(k==0){
+            break;
+        }
+        G1::init(m+n);
+        rep(i,1,k){
+            int x,y;
+            R(x,y);
+            y+=m;
+            G1::add_edge(x,y);
+            G1::add_edge(y,x);
+        }
+        cout<<G1::gao()<<endl;
+    }
+}
